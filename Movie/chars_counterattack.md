@@ -1,6 +1,6 @@
 ---
 title: 機動戦士ガンダム 逆襲のシャア
-original_title: Mobile Suit Gundam: Char's Counterattack
+original_title: "Mobile Suit Gundam: Char's Counterattack"
 country: 日本
 director: 富野由悠季
 release_year: 1988

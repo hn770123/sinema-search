@@ -1,5 +1,7 @@
 # 映画データベース (Movie Database)
 
+[GitHub Pages](https://hn770123.github.io/sinema-search/)
+
 映画データをMarkdown形式で管理し、自動的にJSONインデックスを生成するプロジェクトです。
 
 ## ディレクトリ構成

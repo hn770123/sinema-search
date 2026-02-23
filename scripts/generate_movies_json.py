@@ -33,6 +33,8 @@ def main():
                     metadata = post.metadata
                     # IDとしてファイル名（拡張子なし）を追加
                     metadata['id'] = os.path.splitext(filename)[0]
+                    # Markdown本文を追加
+                    metadata['content'] = post.content
                     movies.append(metadata)
             except Exception as e:
                 print(f"ファイル {filename} の処理中にエラーが発生しました: {e}")

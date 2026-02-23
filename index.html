@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>映画データベース</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>映画データベース</h1>
+        <div class="controls">
+            <label class="toggle-switch">
+                <input type="checkbox" id="watch-later-filter">
+                <span class="slider round"></span>
+                <span class="label-text">あとで見るのみ表示</span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <div id="movie-list-container">
+            <table id="movie-table">
+                <thead>
+                    <tr>
+                        <th class="col-watch-later">あとで見る</th>
+                        <th class="col-title">タイトル</th>
+                        <th class="col-director">監督</th>
+                        <th class="col-country">制作国</th>
+                        <th class="col-year">公開年</th>
+                        <th class="col-genre">ジャンル</th>
+                    </tr>
+                </thead>
+                <tbody id="movie-table-body">
+                    <!-- JavaScriptでここに映画リストを挿入 -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="movie-detail-container" class="hidden">
+            <button id="back-button">← 一覧に戻る</button>
+            <div id="movie-detail-content">
+                <!-- JavaScriptでここに詳細情報を挿入 -->
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

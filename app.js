@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const movieTableBody = document.getElementById('movie-table-body');
-    const watchLaterFilter = document.getElementById('watch-later-filter');
+    const notInterestedFilter = document.getElementById('not-interested-filter');
     const movieListContainer = document.getElementById('movie-list-container');
     const movieDetailContainer = document.getElementById('movie-detail-container');
     const movieDetailContent = document.getElementById('movie-detail-content');
     const backButton = document.getElementById('back-button');
 
     let movies = [];
-    const WATCH_LATER_KEY = 'watch_later_movies';
+    const NOT_INTERESTED_KEY = 'not_interested_movies';
 
     // Fetch movies data
     fetch('movies.json')
@@ -21,31 +21,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render table
     function renderTable() {
         movieTableBody.innerHTML = '';
-        const watchLaterList = getWatchLaterList();
-        const isFilterActive = watchLaterFilter.checked;
+        const notInterestedList = getNotInterestedList();
+        const isFilterActive = notInterestedFilter.checked;
 
         movies.forEach(movie => {
-            const isWatchLater = watchLaterList.includes(movie.id);
+            const isNotInterested = notInterestedList.includes(movie.id);
 
             // Filter logic
-            if (isFilterActive && !isWatchLater) {
+            if (isFilterActive && isNotInterested) {
                 return;
             }
 
             const row = document.createElement('tr');
             row.addEventListener('click', () => showDetail(movie));
 
-            // Watch Later Checkbox Cell
+            // Not Interested Checkbox Cell
             const checkboxCell = document.createElement('td');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.className = 'watch-later-checkbox';
-            checkbox.checked = isWatchLater;
+            checkbox.className = 'not-interested-checkbox';
+            checkbox.checked = isNotInterested;
 
             // Prevent row click when clicking checkbox
             checkbox.addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleWatchLater(movie.id);
+                toggleNotInterested(movie.id);
             });
 
             checkboxCell.appendChild(checkbox);
@@ -85,29 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle Watch Later
-    function toggleWatchLater(id) {
-        let list = getWatchLaterList();
+    // Toggle Not Interested
+    function toggleNotInterested(id) {
+        let list = getNotInterestedList();
         if (list.includes(id)) {
             list = list.filter(item => item !== id);
         } else {
             list.push(id);
         }
-        localStorage.setItem(WATCH_LATER_KEY, JSON.stringify(list));
+        localStorage.setItem(NOT_INTERESTED_KEY, JSON.stringify(list));
 
-        // Re-render if filter is active to immediately remove unchecked items
-        if (watchLaterFilter.checked) {
+        // Re-render if filter is active to immediately remove checked items
+        if (notInterestedFilter.checked) {
             renderTable();
         }
     }
 
-    function getWatchLaterList() {
-        const stored = localStorage.getItem(WATCH_LATER_KEY);
+    function getNotInterestedList() {
+        const stored = localStorage.getItem(NOT_INTERESTED_KEY);
         return stored ? JSON.parse(stored) : [];
     }
 
     // Filter Event Listener
-    watchLaterFilter.addEventListener('change', renderTable);
+    notInterestedFilter.addEventListener('change', renderTable);
 
     // Show Detail View
     function showDetail(movie) {

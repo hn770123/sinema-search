@@ -120,8 +120,8 @@ tr:hover {
     cursor: pointer;
 }
 
-/* Watch Later Checkbox */
-.watch-later-checkbox {
+/* Not Interested Checkbox */
+.not-interested-checkbox {
     width: 20px;
     height: 20px;
     cursor: pointer;

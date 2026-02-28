@@ -103,7 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getNotInterestedList() {
         const stored = localStorage.getItem(NOT_INTERESTED_KEY);
-        return stored ? JSON.parse(stored) : [];
+        if (!stored) return [];
+        try {
+            const parsed = JSON.parse(stored);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+            console.warn('Invalid data in localStorage, resetting:', e);
+            localStorage.removeItem(NOT_INTERESTED_KEY);
+            return [];
+        }
     }
 
     // Filter Event Listener
